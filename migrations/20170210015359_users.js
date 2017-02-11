@@ -8,6 +8,7 @@ exports.up = function(knex, Promise) {
     table.integer('experience');
     table.integer('level');
     table.text('avatar_url');
+    table.integer('games_since_loss');
     table.integer('pong_games_played');
     table.integer('pong_games_won');
     table.integer('horse_games_played');

@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     table.boolean('p1_winner');
     table.dateTime('time');
     table.integer('p1_score');
+    table.integer('p2_score');
     table.float('lat');
     table.float('long');
   });
