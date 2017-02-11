@@ -1,0 +1,99 @@
+
+exports.seed = function(knex, Promise) {
+  // Deletes ALL existing entries
+  return knex.raw('DELETE FROM "users"; ALTER SEQUENCE users_id_seq RESTART WITH 6')
+      .then(function(){
+        const users = [{
+          id: 1,
+          users_name: 'Mark',
+          password: 'password1',
+          purse: 296,
+          experience: 8000,
+          level: 18,
+          avatar_url: '../TheGamblers/Mark-Grant.jpg',
+          pong_games_played: 111,
+          horse_games_played: 17,
+          darts_games_played: 999,
+          pool_games_played: 6,
+          pro_games_played: 34,
+          pong_games_won: 99,
+          horse_games_won: 17,
+          darts_games_won: 2,
+          pool_games_won: 7,
+          pro_games_won: 18
+        }, {
+          id: 2,
+          users_name: 'Tyler',
+          password: 'password2',
+          purse: 441,
+          experience: 8000,
+          level: 18,
+          avatar_url: '../TheGamblers/Tyler-Briskie',
+          pong_games_played: 1,
+          horse_games_played: 1,
+          darts_games_played: 1,
+          pool_games_played: 1,
+          pro_games_played: 16000,
+          pong_games_won: 1,
+          horse_games_won: 1,
+          darts_games_won: 1,
+          pool_games_won: 1,
+          pro_games_won: 10000
+        }, {
+          id: 3,
+          users_name: 'Ike',
+          password: 'password3',
+          purse: 866,
+          experience: 8000,
+          level: 18,
+          avatar_url: '../TheGamblers/Ike-Obidike',
+          pong_games_played: 116,
+          horse_games_played: 44,
+          darts_games_played: 12,
+          pool_games_played: 67,
+          pro_games_played: 131,
+          pong_games_won: 99,
+          horse_games_won: 40,
+          darts_games_won: 6,
+          pool_games_won: 110,
+          pro_games_won: 88
+        }, {
+          id: 4,
+          users_name: 'Darren',
+          password: 'password4',
+          purse: 415,
+          experience: 8000,
+          level: 18,
+          avatar_url: '../TheGamblers/Darren-Hankins',
+          pong_games_played: 78,
+          horse_games_played: 82,
+          darts_games_played: 22,
+          pool_games_played: 64,
+          pro_games_played: 41,
+          pong_games_won: 70,
+          horse_games_won: 66,
+          darts_games_won: 1,
+          pool_games_won: 63,
+          pro_games_won: 33
+        }, {
+          id: 5,
+          users_name: 'Matt',
+          password: 'password5',
+          purse: 11,
+          experience: 11,
+          level: 666,
+          avatar_url: '../TheGamblers/Matt-Seaton',
+          pong_games_played: 1000000,
+          horse_games_played: 1000000,
+          darts_games_played: 1000000,
+          pool_games_played: 1000000,
+          pro_games_played: 1000000,
+          pong_games_won: 0,
+          horse_games_won: 0,
+          darts_games_won: 0,
+          pool_games_won: 0,
+          pro_games_won: 0
+        }];
+      return knex('users').insert(users);
+    });
+};
