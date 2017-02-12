@@ -48,7 +48,8 @@ router.get('/games', function(req, res, next){
 });
 
 router.post('/games', function(req, res, next){
-  knex('game').insert({
+
+  return knex('game').insert({
     type: req.body.type,
     p1_winner: req.body.p1_winner,
     time: new Date(),
@@ -58,7 +59,8 @@ router.post('/games', function(req, res, next){
     long: req.body.long
   })
   .then(function(data){
-    res.json(data);
+    // console.log(data)
+    res.redirect('/games');
   });
 });
 
