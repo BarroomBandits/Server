@@ -9,6 +9,7 @@ exports.seed = function(knex, Promise) {
         p1_winner: true,
         time: new Date(),
         p1_score: 21,
+        p2_score: 10,
         lat: 39.7392,
         long: -104.9903
       }, {
@@ -17,6 +18,7 @@ exports.seed = function(knex, Promise) {
         p1_winner: false,
         time: new Date(),
         p1_score: 11,
+        p2_score: 21,
         lat: 39.9042,
         long: 116.4074
       }, {
@@ -25,6 +27,7 @@ exports.seed = function(knex, Promise) {
         p1_winner: false,
         time: new Date(),
         p1_score: 0,
+        p2_score: 21,
         lat: -37.8136,
         long: 144.9631
       }, {
@@ -33,6 +36,7 @@ exports.seed = function(knex, Promise) {
         p1_winner: false,
         time: new Date(),
         p1_score: 6,
+        p2_score: 21,
         lat: 46.7712,
         long: 23.6236
       }];
