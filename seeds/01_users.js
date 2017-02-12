@@ -6,6 +6,7 @@ exports.seed = function(knex, Promise) {
         const users = [{
           id: 1,
           users_name: 'Mark',
+          email: "ramblingambler1@gmail.com",
           password: 'password1',
           purse: 296,
           experience: 8000,
@@ -25,6 +26,7 @@ exports.seed = function(knex, Promise) {
         }, {
           id: 2,
           users_name: 'Tyler',
+          email: "ramblingambler2@gmail.com",
           password: 'password2',
           purse: 441,
           experience: 8000,
@@ -44,6 +46,7 @@ exports.seed = function(knex, Promise) {
         }, {
           id: 3,
           users_name: 'Ike',
+          email: "ramblingambler3@gmail.com",
           password: 'password3',
           purse: 866,
           experience: 8000,
@@ -63,6 +66,7 @@ exports.seed = function(knex, Promise) {
         }, {
           id: 4,
           users_name: 'Darren',
+          email: "ramblingambler4@gmail.com",
           password: 'password4',
           purse: 415,
           experience: 8000,
@@ -82,6 +86,7 @@ exports.seed = function(knex, Promise) {
         }, {
           id: 5,
           users_name: 'Matt',
+          email: "ramblingambler5@gmail.com",
           password: 'password5',
           purse: 11,
           experience: 11,
