@@ -49,13 +49,16 @@ router.get('/games', function(req, res, next){
 
 router.post('/games', function(req, res, next){
   knex('game').insert({
-    type: req.body.name,
+    type: req.body.type,
     p1_winner: req.body.p1_winner,
     time: new Date(),
     p1_score: req.body.p1_score,
     p2_score: req.body.p2_score,
     lat: req.body.lat,
     long: req.body.long
+  })
+  .then(function(data){
+    res.json(data);
   });
 });
 
