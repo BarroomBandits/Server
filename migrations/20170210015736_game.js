@@ -2,11 +2,11 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('game', function(table){
     table.increments();
-    table.integer('type');
+    table.integer('type').notNullable();
     table.boolean('p1_winner');
-    table.dateTime('time');
-    table.integer('p1_score');
-    table.integer('p2_score');
+    table.dateTime('time').notNullable();
+    table.integer('p1_score').notNullable();
+    table.integer('p2_score').notNullable();
     table.float('lat');
     table.float('long');
   });
