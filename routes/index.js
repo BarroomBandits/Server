@@ -47,6 +47,13 @@ router.get('/games', function(req, res, next){
   });
 });
 
+router.get('/games/:id', function(req, res, next){
+  return knex('game').where('id', req.params.id).first()
+  .then(a_game=>{
+    res.json(a_game);
+  })
+})
+
 router.post('/games', function(req, res, next){
 
   return knex('game').insert({
