@@ -53,6 +53,7 @@ router.get('/games_users',(req,res) => {
     .select('game.id','game.type','game.time','game.is_active','users.id as userss_id','users.users_name')
     .innerJoin('users_game','users_game.game_id','game.id')
     .innerJoin('users','users.id','users_game.users_id')
+    .where("game.is_active","pending")
     .then((data)=>{
       res.json(data)
     })

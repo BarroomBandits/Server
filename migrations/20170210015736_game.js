@@ -9,7 +9,7 @@ exports.up = function(knex, Promise) {
     table.integer('p2_score').notNullable();
     table.float('lat');
     table.float('long');
-    table.boolean('is_active').notNullable();
+    table.text('is_active').notNullable();
   });
 };
 
