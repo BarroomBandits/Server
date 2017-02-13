@@ -1,4 +1,3 @@
-
 var express = require('express');
 var router = express.Router();
 const knex = require('../db/knex');
@@ -8,18 +7,18 @@ const encrypt = require('../db/encrypt.js');
 
 /* Get 'dem users */
 router.get('/users', function(req, res, next) {
-  return knex('users')
-  .then(function(data){
-    res.json(data);
-  });
+    return knex('users')
+        .then(function(data) {
+            res.json(data);
+        });
 });
 
-router.get('/users/:id', function(req, res, next){
-  return knex('users').where('id', req.params.id)
-  .then(data=>{
-    res.json(data)
-  })
-})
+router.get('/users/:id', function(req, res, next) {
+    return knex('users').where('id', req.params.id)
+        .then(data => {
+            res.json(data)
+        });
+});
 
 // router.post('/newuser', function(req,res,next){
 //   profile.checkIfProfileExists(req.body)
@@ -41,65 +40,190 @@ router.get('/users/:id', function(req, res, next){
 
 /* Get 'dem games */
 
-router.get('/games', function(req, res, next){
-  return knex('game')
-  .then(function(data){
-    res.json(data);
-  });
+router.get('/games', function(req, res, next) {
+    return knex('game')
+        .then(function(data) {
+            res.json(data);
+        });
 });
 
-router.get('/games/:id', function(req, res, next){
-  return knex('game').where('id', req.params.id).first()
-  .then(a_game=>{
-    res.json(a_game);
-  })
-})
+router.get('/games/:id', function(req, res, next) {
+    return knex('game').where('id', req.params.id).first()
+        .then(a_game => {
+            res.json(a_game);
+        });
+});
 
-router.post('/games', function(req, res, next){
-  return knex('game').insert({
-    type: req.body.type,
-    p1_winner: req.body.p1_winner,
-    time: new Date(),
-    p1_score: req.body.p1_score,
-    p2_score: req.body.p2_score,
-    lat: req.body.lat,
-    long: req.body.long
-  })
-  .then(function(data){
-    // console.log(data)
-    res.redirect('/games');
-  });
+router.post('/games', function(req, res, next) {
+    return knex('game').insert({
+            type: req.body.type,
+            p1_winner: req.body.p1_winner,
+            time: new Date(),
+            p1_score: req.body.p1_score,
+            p2_score: req.body.p2_score,
+            lat: req.body.lat,
+            long: req.body.long
+        })
+        .then(function(data) {
+            // console.log(data)
+            res.redirect('/games');
+        });
 });
 
 /* Get Dem Wagers */
 
-router.get('/wagers', function (req, res, next){
-  return knex('wager')
-  .then(allWagers=>{
-    res.json(allWagers)
-  })
-})
+router.get('/wagers', function(req, res, next) {
+    return knex('wager')
+        .then(allWagers => {
+            res.json(allWagers);
+        });
+});
 
-router.get('/wagers/user/:user_id', function(req,res,next){
-  return knex('wager').where('p1_id', req.params.user_id)
-  .orWhere('p2_id', req.params.user_id)
-  .then(wagers=>{
-    res.json(wagers);
-  })
-})
+router.get('/wagers/user/:user_id', function(req, res, next) {
+    return knex('wager').where('p1_id', req.params.user_id)
+        .orWhere('p2_id', req.params.user_id)
+        .then(wagers => {
+            res.json(wagers);
+        });
+});
 
-router.get('/wagers/:id', function(req, res, next){
-  return knex('wager').where('id', req.params.id).first()
-  .then(a_wager=>{
-    res.json(a_wager)
-  })
-})
+router.get('/wagers/:id', function(req, res, next) {
+    return knex('wager').where('id', req.params.id).first()
+        .then(a_wager => {
+            res.json(a_wager);
+        });
+});
 
-router.get('/wagers/game/:game_id', function(req,res,next){
-  return knex('wager').where('game_id', req.params.game_id)
-  .then(wagers=>{
-    res.json(wagers)
-  })
-})
+router.get('/wagers/game/:game_id', function(req, res, next) {
+    return knex('wager').where('game_id', req.params.game_id)
+        .then(wagers => {
+            res.json(wagers);
+        });
+});
+
+router.post('/wagers', function(req, res, next) {
+    return knex('wager').insert({
+            game_id: req.body.game_id,
+            p1_id: req.body.p1_id,
+            p2_id: req.body.p2_id,
+            amount: req.body.amount,
+            winner_p1: req.body.winner_p1
+        })
+        .then(wagers => {
+            res.json(wagers);
+        });
+});
+
+router.get('/achievements', function(req, res, next) {
+    return knex('achievement')
+        .then(achievements => {
+            res.json(achievements);
+        });
+});
+
+router.post('/achievements', function(req, res, next) {
+    return knex('achievement').insert({
+            name: req.body.name,
+            value: req.body.value,
+            experience: req.body.experience,
+            trophy_url: req.body.trophy_url
+        })
+        .then(achievements => {
+            res.json(achievements);
+        });
+});
+
+router.get('/achievements/user/:users_id', (req, res, next) => {
+    return knex('users_achievement').where('users_id', req.params.users_id)
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.post('/achievements/user/:users_id', (req, res, next) => {
+    return knex('users_achievement').insert({
+            users_id: req.body.users_id,
+            achievement_id: req.body.achievement_id
+        })
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.get('/games/:game_id/:users_id', (req, res, next) => {
+    return knex('users_game').where('game_id', req.params.game_id)
+        .andWhere('users_id', req.params.users_id)
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.post('/games/user/:user_id', (req, res, next) => {
+    return knex('users_game').insert({
+            game_id: req.body.game_id,
+            users_id: req.body.users_id
+        })
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.put('/user/:users_id', (req, res, next) => {
+
+    let userInfo = {
+        purse: req.body.purse,
+        experience: req.body.experience,
+        level: req.body.level,
+        games_since_loss: req.body.games_since_loss,
+        pong_games_played: req.body.pong_games_played,
+        pong_games_won: req.body.pong_games_won,
+        horse_games_played: req.body.horse_games_played,
+        horse_games_won: req.body.horse_games_won,
+        darts_games_played: req.body.darts_games_played,
+        darts_games_won: req.body.darts_games_won,
+        pool_games_played: req.body.pool_games_played,
+        pool_games_won: req.body.pool_games_won,
+        pro_games_played: req.body.pro_games_played,
+        pro_games_won: req.body.pro_games_won
+    };
+    return knex('users')
+        .where("id", req.params.users_id)
+        .update(userInfo)
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.put('/games/:games_id', (req, res) => {
+    let updatedGame = {
+        p1_score: req.body.p1_score,
+        p2_score: req.body.p2_score,
+        p1_winner: req.body.p1_winner,
+        is_active: req.body.is_active
+    };
+    return knex('game').where("id", req.params.games_id)
+        .update(updatedGame)
+        .then((data) => {
+            res.json(data);
+        });
+});
+
+
+router.put('/wagers/:id', (req, res) => {
+    return knex('wager').where("id", req.params.id)
+        .update({
+            winner_p1: req.params.winner_p1
+        })
+        .then(data => {
+            res.json(data);
+        });
+});
+
+router.delete('/users/:id', (req, res)=>{
+  return knex('users').where('id', req.params.id).del()
+  .then(id =>{
+    res.send('user deleted');
+  });
+});
 
 module.exports = router;
