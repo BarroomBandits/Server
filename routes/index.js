@@ -40,8 +40,15 @@ router.get('/users/:id', function(req, res, next) {
 
 /* Get 'dem games */
 
+router.get('/games', function(req, res, next) {
+    return knex('game')
+        .then(function(data) {
+            res.json(data);
+        });
+});
 
-router.get('/games',(req,res) => {
+
+router.get('/games_users',(req,res) => {
   knex.from('game')
     .select('game.id','game.type','game.time','game.is_active','users.id as userss_id','users.users_name')
     .innerJoin('users_game','users_game.game_id','game.id')
@@ -50,13 +57,6 @@ router.get('/games',(req,res) => {
       res.json(data)
     })
 })
-
-// router.get('/games', function(req, res, next) {
-//     return knex('game')
-//         .then(function(data) {
-//             res.json(data);
-//         });
-// });
 
 router.get('/games/:id', function(req, res, next) {
     return knex('game').where('id', req.params.id).first()
