@@ -238,5 +238,43 @@ router.delete('/users/:id', (req, res)=>{
   });
 });
 
+router.get('/games_users_wagers/',(req,res) => {
+  knex.from('wager')
+    .select('wager.amount','wager.winner_p1','p1_id','p2_id','winner_p1','wager.id as wagers_id'
+      ,'game.id','game.type','game.p1_winner','game.time','game.p1_score','game.p2_score','game.is_active')
+      .innerJoin('game','game.id','wager.game_id')
+      .where({
+          'game.is_active':'active'
+      })
+  .then((wagers)=>{
+        extractInfo(wagers).then((information)=>{
+            res.json(information)
+          })
+        })
+      })
+
+function extractInfo(array){
+  let infoArray = [];
+  let promises = []
+    for(var i =0;i<array.length;i++){
+      let player1_id = array[i].p1_id
+      let player2_id = array[i].p2_id
+      promises.push(knex('users').
+      where('users.id', player1_id)
+          .then((user) => {
+              return knex('users').
+              where('users.id', player2_id)
+                  .then((user2) => {
+                      return {
+                          user1_name: user[0].users_name,
+                          user2_name: user2[0].users_name,
+                          amount: array[0].amount,
+                          type: array[0].type
+                      }
+                  })
+        }))
+    }
+    return Promise.all(promises)
+}
 
 module.exports = router;
