@@ -20,23 +20,43 @@ router.get('/users/:id', function(req, res, next) {
         });
 });
 
-// router.post('/newuser', function(req,res,next){
-//   profile.checkIfProfileExists(req.body)
-//   .then(result=>{
-//     if (result === undefined){
-//       req.body.password = encrypt.encrypt(req.body.password)
-//       .then(hashPass=>{
-//         let newUser = {
-//           users_name: req.body.username,
-//           email: req.body.email,
-//           password: hashPass,
-//           avatar_url: req.body.avatar_url
-//         }
-//         console.log(newUser);
-//       })
-//     }
-//   });
-// });
+router.post('/newuser', function(req,res,next){
+  // console.log("hitting new user route")
+  // console.log(req.body)
+  // let newPassword = encrypt.encrypt(req.body.password)
+  // return knex('users').insert({
+  //   users_name: req.body.users_name,
+  //   password: newPassword,
+  //   email: req.body.email
+  // }).then(addedUser=>{
+  //   console.log(addedUser)
+  // })
+  profile.checkIfProfileExists(req.body)
+  .then(result=>{
+    if (result === undefined){
+      if(req.body.password === req.body.password2){
+        req.body.password = encrypt.encrypt(req.body.password)
+      .then(hashPass=>{
+        // if (req.body.password == req.body.password2){
+          //checking if passwords match
+        console.log("passwords match, adding to database");
+        return knex('users').insert({
+          users_name: req.body.users_name,
+          password: hashPass,
+          email: req.body.email
+        }).then(addedUser=>{
+          console.log(addedUser)
+        })
+      })
+      }else{
+        console.log("passwords do not match");
+      }
+
+    } else {
+      console.log("user exists")
+    }
+  });
+});
 
 /* Get 'dem games */
 
