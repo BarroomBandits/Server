@@ -269,7 +269,10 @@ function extractInfo(array){
                           user1_name: user[0].users_name,
                           user2_name: user2[0].users_name,
                           amount: array[0].amount,
-                          type: array[0].type
+                          type: array[0].type,
+                          time:array[0].time,
+                          p1_score:array[0].p1_score,
+                          p2_score:array[0].p2_score,
                       }
                   })
         }))
