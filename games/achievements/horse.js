@@ -31,49 +31,49 @@ function forThree(rank){
 }
 
 function activeAroundTheRim(gamesPlayed){
-  if(gamesPlayed === 1){
+  if(gamesPlayed >= 1 && gamesPlayed < 5){
     horseAchievements.push("active_around_the_rim");
   }
 }
 
 function allBall(gamesPlayed){
-  if(gamesPlayed === 5){
+  if(gamesPlayed >= 5){
     horseAchievements.push("all_ball");
   }
 }
 
 function foul(gamesSinceWin){
-  if(gamesSinceWin === 3){
+  if(gamesSinceWin >= 3 && gamesSinceWin < 5){
     horseAchievements.push("foul");
   }
 }
 
 function flagrantFoul(gamesSinceWin){
-  if(gamesSinceWin === 5){
+  if(gamesSinceWin >= 5 && gamesSinceWin < 7){
     horseAchievements.push("flagrant_foul");
   }
 }
 
 function fouledOut(gamesSinceWin){
-  if(gamesSinceWin === 7){
+  if(gamesSinceWin >= 7){
     horseAchievements.push("fouled_out");
   }
 }
 
 function takeItToTheHole(gamesSinceLoss){
-  if(gamesSinceLoss === 3){
+  if(gamesSinceLoss >= 3 && gamesSinceLoss < 5){
     horseAchievements.push("take_it_to_the_hole");
   }
 }
 
 function inThePaint(gamesSinceLoss){
-  if(gamesSinceLoss === 5){
+  if(gamesSinceLoss >= 5 && gamesSinceLoss < 7){
     horseAchievements.push("in_the_paint");
   }
 }
 
 function slamDunk(gamesSinceLoss){
-  if(gamesSinceLoss === 7){
+  if(gamesSinceLoss >= 7){
     horseAchievements.push("slam_dunk");
   }
 }

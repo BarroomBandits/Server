@@ -111,19 +111,19 @@ function neckAndNeck(score, p2Score){
 }
 
 function battlePaddle(gamesWon){
-  if(gamesWon === 10){
+  if(gamesWon >= 10 && gamesWon < 20){
     pPAchievements.push("battle_paddle");
   }
 }
 
 function killShot(gamesWon){
-  if(gamesWon === 20){
+  if(gamesWon >= 20 && gamesWon < 50){
     pPAchievements.push("kill_shot");
   }
 }
 
 function gameSetMatch(gamesWon){
-  if(gamesWon === 50){
+  if(gamesWon >= 50){
     pPAchievements.push("game_set_match");
   }
 }

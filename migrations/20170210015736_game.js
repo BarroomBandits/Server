@@ -10,6 +10,7 @@ exports.up = function(knex, Promise) {
     table.float('lat');
     table.float('long');
     table.text('is_active').notNullable();
+    table.boolean('is_tie').defaultTo(false);
   });
 };
 

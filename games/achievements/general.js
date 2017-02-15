@@ -20,6 +20,7 @@ var p2gamesLost = 0;
 var level = 0;
 var p2Level = 0;
 var p2GamesSinceLoss = 0;
+var win = false;
 
 function winStreak(gamesSinceLoss){
   if(gamesSinceLoss >= 3){
@@ -58,13 +59,13 @@ function firstTimer(gamesWon){
 }
 
 function streetKidOuttaNowhere(gamesWon, gamesLost, p2gamesWon, p2gamesLost){
-  if(gamesWon/gamesLost <= 3 * (p2gamesWon/p2gamesLost)){
+  if(win && gamesWon/gamesLost <= 3 * (p2gamesWon/p2gamesLost)){
     achievementArray.push("street_kid_outta_nowhere");
   }
 }
 
 function goliath(level, p2Level){
-  if(level <= p2Level - 5){
+  if(win && level <= p2Level - 5){
     achievementArray.push("goliath");
   }
 }
@@ -73,20 +74,6 @@ function killJoy(p2GamesSinceLoss){
   if(p2GamesSinceLoss === 0){
     achievementArray.push("killjoy");
   }
-}
-
-function oneTrickPony(pPWin, dartsWin, poolWin, horseWin, proWin){
-   var ponyArray = [pPWin, dartsWin, poolWin, horseWin, proWin];
-   var finalArray = [];
-   for(var i = 0; i < ponyArray.length; i++){
-     let thisPony = i;
-     for(var j = 0; j < ponyArray.length; j++){
-       if (j >= 3 * thisPony){
-         finalArray.push(thisPony);
-       }
-     }
-   }
-   achievementArray.push(`one_trick_pony`);
 }
 
 function greaseFire(gamesWon, gamesLost){

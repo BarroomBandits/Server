@@ -35,37 +35,37 @@ function losingHazard(score, p2Score){
 }
 
 function race(gamesSinceLoss){
-  if(gamesSinceLoss === 3){
+  if(gamesSinceLoss >= 3 && gamesSinceLoss < 5){
     poolAchievements.push("race");
   }
 }
 
 function holdYourMan(gamesSinceLoss){
-  if(gamesSinceLoss === 5){
+  if(gamesSinceLoss >= 5 && gamesSinceLoss < 7){
     poolAchievements.push("hold_your_man");
   }
 }
 
 function moneyBall(gamesSinceLoss){
-  if(gamesSinceLoss === 7){
+  if(gamesSinceLoss >= 7){
     poolAchievements.push("money_ball");
   }
 }
 
 function miscue(gamesSinceWin){
-  if(gamesSinceWin === 3){
+  if(gamesSinceWin >= 3 && gamesSinceWin < 5){
     poolAchievements.push("miscue");
   }
 }
 
 function scratch(gamesSinceWin){
-  if(gamesSinceWin === 5){
+  if(gamesSinceWin >= 5 && gamesSinceWin < 7){
     poolAchievements.push("scratch");
   }
 }
 
 function ballInHand(gamesSinceWin){
-  if(gamesSinceWin === 7){
+  if(gamesSinceWin >= 7){
     poolAchievements.push("ball_in_hand");
   }
 }
@@ -101,19 +101,19 @@ function cuedToWin(rank){
 }
 
 function whitey(gamesPlayed){
-  if(gamesPlayed === 1){
+  if(gamesPlayed >= 1 && gamesPlayed < 3){
     poolAchievements.push("whitey");
   }
 }
 
 function barFly(gamesPlayed){
-  if(gamesPlayed === 3){
+  if(gamesPlayed >= 3 && gamesPlayed < 5){
     poolAchievements.push("bar_fly");
   }
 }
 
 function cueMaster(gamesPlayed){
-  if(gamesPlayed === 5){
+  if(gamesPlayed >= 5){
     poolAchievements.push("cue_master");
   }
 }

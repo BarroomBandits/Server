@@ -28,13 +28,13 @@ function robinHood(score, p2Score){
 }
 
 function treble(gamesSinceLoss){
-  if(gamesSinceLoss === 3){
+  if(gamesSinceLoss >= 3){
     dartsAchievements.push("treble");
   }
 }
 
 function diddleForTheMiddle(gamesPlayed){
-  if(gamesPlayed === 1){
+  if(gamesPlayed >= 1){
     dartsAchievements.push("diddle_for_the_middle");
   }
 }
@@ -46,31 +46,31 @@ function madHouse(gamesWon, gamesLost){
 }
 
 function dartitis(gamesSinceLoss){
-  if(gamesSinceLoss === 3){
+  if(gamesSinceLoss >= 3 && gamesSinceLoss < 5){
     dartsAchievements.push("dartitis");
   }
 }
 
 function granny(gamesSinceLoss){
-  if(gamesSinceLoss === 5){
+  if(gamesSinceLoss >= 5 && gamesSinceLoss < 7){
     dartsAchievements.push("granny");
   }
 }
 
 function offTheIsland(gamesSinceLoss){
-  if(gamesSinceLoss === 7){
+  if(gamesSinceLoss >= 7){
     dartsAchievements.push("off_the_island");
   }
 }
 
 function whiteHorse(gamesWon){
-  if(gamesWon === 10){
+  if(gamesWon >= 10 && gamesWon < 15){
     dartsAchievements.push("white_horse");
   }
 }
 
 function killer(gamesWon){
-  if(gamesWon === 15){
+  if(gamesWon >= 15){
     dartsAchievements.push("killer");
   }
 }

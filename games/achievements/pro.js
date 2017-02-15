@@ -8,37 +8,37 @@ var winnings = 0;
 var losses = 0;
 
 function gettingDown(betsMade){
-  if(betsMade === 1){
+  if(betsMade >= 1 && betsMade < 3){
     proAchievements.push("getting_down");
   }
 }
 
 function puppy(betsMade){
-  if(betsMade === 5){
+  if(betsMade >= 5 && betsMade < 10){
     proAchievements.push("puppy");
   }
 }
 
 function dog(betsMade){
-  if(betsMade === 10){
+  if(betsMade >= 10){
     proAchievements.push("dog");
   }
 }
 
 function wiseguy(betsWon){
-  if(betsWon === 1){
+  if(betsWon >= 1 && betsWon < 5){
     proAchievements.push("wiseguy");
   }
 }
 
 function sharp(betsWon){
-  if(betsWon === 5){
+  if(betsWon >= 5 < 10){
     proAchievements.push("sharp");
   }
 }
 
 function bookie(betsWon){
-  if(betsWon === 10){
+  if(betsWon >= 10){
     proAchievements.push("bookie");
   }
 }
