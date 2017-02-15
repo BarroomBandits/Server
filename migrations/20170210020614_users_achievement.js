@@ -4,9 +4,9 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.integer('users_id').references('users.id').unsigned().onDelete('cascade');
     table.integer('win_streak').defaultTo(0);
-    table.integer('around_the_world').defaultTo(0);
-    table.integer('one_player_army').defaultTo(0);
-    table.integer('barroom_bandit').defaultTo(0);
+    table.boolean('around_the_world').defaultTo(false);
+    table.boolean('one_player_army').defaultTo(false);
+    table.boolean('barroom_bandit').defaultTo(false);
     table.integer('hustler').defaultTo(0);
     table.integer('first_timer').defaultTo(0);
     table.integer('street_kid_outta_nowhere').defaultTo(0);
@@ -113,7 +113,6 @@ exports.up = function(knex, Promise) {
     table.integer('bad_beat').defaultTo(0);
     table.integer('hedge').defaultTo(0);
     table.integer('shit').defaultTo(0);
-
 
   });
 };
