@@ -4,6 +4,7 @@ const knex = require('../db/knex');
 const dotenv = require('dotenv').config();
 const profile = require('../db/profile.js');
 const encrypt = require('../db/encrypt.js');
+var jwt = require('jsonwebtoken');
 
 /* Get 'dem users */
 router.get('/users', function(req, res, next) {
@@ -20,15 +21,37 @@ router.get('/users/:id', function(req, res, next) {
         });
 });
 
+router.get('/profile', function(req, res){
+  if(req.user) {
+    return knex('users').where('email', req.user.email)
+      .then(data =>{
+        res.json(data)
+      })
+  } else {
+    res.status(401);
+    res.json({
+      message: "UnAuthorized"
+    });
+  }
+});
+
 router.post('/signIn',(req,res,next)=>{
   knex('users')
+  .select('id', 'email', 'password','users_name')
     .where('email',req.body.email)
       .first()
         .then((user)=>{
           if(user!==undefined){
             encrypt.decrypt(user.password,req.body.password)
               .then((result)=>{
-                res.json(user)
+                delete user.password;
+                jwt.sign(user, process.env.TOKEN_SECRET, { expiresIn: '1d' }, function(error, token) {
+                   console.log(error, token);
+                   res.json({
+                     token: token
+                   });
+
+                });
               })
             }else{
               next(new Error('invalid email!'))
