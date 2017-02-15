@@ -21,31 +21,24 @@ router.get('/users/:id', function(req, res, next) {
 });
 
 router.post('/newuser', function(req,res,next){
-  // console.log("hitting new user route")
-  // console.log(req.body)
-  // let newPassword = encrypt.encrypt(req.body.password)
-  // return knex('users').insert({
-  //   users_name: req.body.users_name,
-  //   password: newPassword,
-  //   email: req.body.email
-  // }).then(addedUser=>{
-  //   console.log(addedUser)
-  // })
+
   profile.checkIfProfileExists(req.body)
   .then(result=>{
     if (result === undefined){
       if(req.body.password === req.body.password2){
         req.body.password = encrypt.encrypt(req.body.password)
       .then(hashPass=>{
-        // if (req.body.password == req.body.password2){
           //checking if passwords match
         console.log("passwords match, adding to database");
         return knex('users').insert({
           users_name: req.body.users_name,
           password: hashPass,
           email: req.body.email
-        }).then(addedUser=>{
+        })
+        .returning(['users_name','email'])
+        .then(addedUser=>{
           console.log(addedUser)
+          res.json(addedUser)
         })
       })
       }else{
