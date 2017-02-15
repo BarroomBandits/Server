@@ -20,6 +20,22 @@ router.get('/users/:id', function(req, res, next) {
         });
 });
 
+router.post('/signIn',(req,res,next)=>{
+  knex('users')
+    .where('email',req.body.email)
+      .first()
+        .then((user)=>{
+          if(user!==undefined){
+            encrypt.decrypt(user.password,req.body.password)
+              .then((result)=>{
+                res.json(user)
+              })
+            }else{
+              next(new Error('invalid email!'))
+         }
+      })
+})
+
 router.post('/newuser', function(req,res,next){
 
   profile.checkIfProfileExists(req.body)
