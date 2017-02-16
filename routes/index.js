@@ -5,7 +5,11 @@ const dotenv = require('dotenv').config();
 const profile = require('../db/profile.js');
 const encrypt = require('../db/encrypt.js');
 var jwt = require('jsonwebtoken');
+var cors = require('cors')
 
+var app = express();
+
+app.options('*', cors())
 /* Get 'dem users */
 router.get('/users', function(req, res, next) {
     return knex('users')
@@ -118,6 +122,14 @@ router.get('/games/:id', function(req, res, next) {
         });
 });
 
+// router.get('/games', function(req,res,next){
+//   knex('game')
+//     .where('is_active','pending')
+//       .then((pendingGames)=>{
+//         res.json(pendingGames)
+//       })
+// })
+
 router.post('/games', function(req, res, next) {
     return knex('game').insert({
             type: req.body.type,
@@ -125,12 +137,19 @@ router.post('/games', function(req, res, next) {
             time: new Date(),
             p1_score: req.body.p1_score,
             p2_score: req.body.p2_score,
-            // lat: req.body.lat,
-            // long: req.body.long
+            lat: req.body.lat,
+            long: req.body.long,
+            is_active: req.body.is_active
         })
+        .returning('id')
         .then(function(data) {
-            // console.log(data)
-            res.json(data);
+
+          console.log(data)
+            return knex('users_game').insert({
+              game_id: Number(data),
+              users_id: req.body.user_id
+            })
+
         });
 });
 
