@@ -222,7 +222,7 @@ router.get('/games/:game_id/:users_id', (req, res, next) => {
         });
 });
 
-router.post('/games/:games_id/user/:user_id', (req, res, next) => {
+router.post('/games/:games_id/user/:users_id', (req, res, next) => {
     return knex('users_game').insert({
             game_id: req.params.games_id,
             users_id: req.params.users_id
