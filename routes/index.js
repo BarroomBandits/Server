@@ -222,10 +222,10 @@ router.get('/games/:game_id/:users_id', (req, res, next) => {
         });
 });
 
-router.post('/games/user/:user_id', (req, res, next) => {
+router.post('/games/:games_id/user/:user_id', (req, res, next) => {
     return knex('users_game').insert({
-            game_id: req.body.game_id,
-            users_id: req.body.users_id
+            game_id: req.params.games_id,
+            users_id: req.params.users_id
         })
         .then(data => {
             res.json(data);
