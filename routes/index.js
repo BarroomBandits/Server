@@ -104,7 +104,7 @@ router.get('/games', function(req, res, next) {
 });
 
 
-router.get('/games_users',(req,res) => {
+router.get('/games_users/pending',(req,res) => {
   knex.from('game')
     .select('game.id','game.type','game.time','game.is_active','users.id as userss_id','users.users_name')
     .innerJoin('users_game','users_game.game_id','game.id')
@@ -114,6 +114,28 @@ router.get('/games_users',(req,res) => {
       res.json(data)
     })
 })
+
+router.get('/games_users/active/:user_id',(req,res) => {
+  console.log('hitting that route');
+  knex.from('game')
+    .select('game.id','game.type','game.time','game.is_active', 'game.p1_score', 'game.p2_score')
+    .innerJoin('users_game','users_game.game_id','game.id')
+    .innerJoin('users','users.id','users_game.users_id')
+    .where("game.is_active","active")
+    .andWhere('users.id', req.params.user_id)
+    .then((data)=>{
+      res.json(data)
+    })
+})
+
+// router.get('/games_users_wagers',(req,res) => {
+//   knex.from('wager')
+//     .select('wager.amount','wager.winner_p1','p1_id','p2_id','winner_p1','wager.id as wagers_id'
+//       ,'game.id','game.type','game.p1_winner','game.time','game.p1_score','game.p2_score','game.is_active')
+//       .innerJoin('game','game.id','wager.game_id')
+//       .where({
+//           'game.is_active':'active'
+//       })
 
 router.get('/games/:id', function(req, res, next) {
     return knex('game').where('id', req.params.id).first()
@@ -309,7 +331,7 @@ router.delete('/users/:id', (req, res)=>{
   });
 });
 
-router.get('/games_users_wagers/',(req,res) => {
+router.get('/games_users_wagers',(req,res) => {
   knex.from('wager')
     .select('wager.amount','wager.winner_p1','p1_id','p2_id','winner_p1','wager.id as wagers_id'
       ,'game.id','game.type','game.p1_winner','game.time','game.p1_score','game.p2_score','game.is_active')
