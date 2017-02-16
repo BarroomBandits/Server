@@ -130,7 +130,7 @@ router.post('/games', function(req, res, next) {
         })
         .then(function(data) {
             // console.log(data)
-            res.redirect('/games');
+            res.json(data);
         });
 });
 

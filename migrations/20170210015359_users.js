@@ -3,7 +3,6 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', function(table){
     table.increments();
     table.text('users_name').notNullable();
-    table.string('googleID');
     table.text('email').notNullable();
     table.text('password').notNullable();
     table.integer('purse').defaultTo(100);
@@ -21,7 +20,6 @@ exports.up = function(knex, Promise) {
     table.integer('pool_games_won').defaultTo(0);
     table.integer('pro_games_played').defaultTo(0);
     table.integer('pro_games_won').defaultTo(0);
-    table.string('token');
   });
 };
 
