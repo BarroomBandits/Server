@@ -12,7 +12,8 @@ exports.seed = function(knex, Promise) {
         p2_score: 10,
         lat: 39.7392,
         long: -104.9903,
-        is_active: "pending"
+        is_active: "pending",
+        is_tie: false
       }, {
         id: 2,
         type: 8,
@@ -22,7 +23,8 @@ exports.seed = function(knex, Promise) {
         p2_score: 21,
         lat: 39.9042,
         long: 116.4074,
-        is_active: "active"
+        is_active: "active",
+        is_tie: false
       }, {
         id: 3,
         type: 1,
@@ -32,7 +34,8 @@ exports.seed = function(knex, Promise) {
         p2_score: 21,
         lat: -37.8136,
         long: 144.9631,
-        is_active: "complete"
+        is_active: "complete",
+        is_tie: false
       }, {
         id: 4,
         type: 10,
@@ -42,7 +45,8 @@ exports.seed = function(knex, Promise) {
         p2_score: 21,
         lat: 46.7712,
         long: 23.6236,
-        is_active: "active"
+        is_active: "active",
+        is_tie: false
       }];
       return knex('game').insert(games);
     });

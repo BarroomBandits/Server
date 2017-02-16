@@ -30,7 +30,7 @@ exports.up = function(knex, Promise) {
     table.boolean('weekend_warrior').defaultTo(false);
     table.boolean('lounge_lizard').defaultTo(false);
     table.boolean('whale').defaultTo(false);
-    table.boolean('bust').defaultTo(false);
+    table.integer('bust').defaultTo(0);
     table.integer('hard_sixteen').defaultTo(0);
     table.integer('ruined').defaultTo(0);
     table.boolean('king_pong').defaultTo(false);
@@ -96,6 +96,7 @@ exports.up = function(knex, Promise) {
     table.integer('dog_the_nine').defaultTo(0);
     table.integer('the_nuts').defaultTo(0);
     table.boolean('billiard_emperor').defaultTo(false);
+    table.boolean('tournament_tough').defaultTo(false);
     table.boolean('cued_to_win').defaultTo(false);
     table.boolean('whitey').defaultTo(false);
     table.boolean('bar_fly').defaultTo(false);

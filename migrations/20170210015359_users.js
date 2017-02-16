@@ -3,7 +3,6 @@ exports.up = function(knex, Promise) {
   return knex.schema.createTable('users', function(table){
     table.increments();
     table.text('users_name').notNullable();
-    table.string('googleID');
     table.text('email').notNullable();
     table.text('password').notNullable();
     table.integer('purse').defaultTo(100);
@@ -50,6 +49,8 @@ exports.up = function(knex, Promise) {
     table.integer('pro_games_won').defaultTo(0);
     table.integer('total_bets_made').defaultTo(0);
     table.integer('total_bets_won').defaultTo(0);
+    table.integer('amount_won_betting').defaultTo(0);
+    table.integer('amount_lost_betting').defaultTo(0);
     table.string('token');
   });
 };
