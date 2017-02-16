@@ -121,12 +121,12 @@ router.get('/games/:id', function(req, res, next) {
 router.post('/games', function(req, res, next) {
     return knex('game').insert({
             type: req.body.type,
-            p1_winner: req.body.p1_winner,
+            p1_winner: null,
             time: new Date(),
             p1_score: req.body.p1_score,
             p2_score: req.body.p2_score,
-            lat: req.body.lat,
-            long: req.body.long
+            // lat: req.body.lat,
+            // long: req.body.long
         })
         .then(function(data) {
             // console.log(data)
