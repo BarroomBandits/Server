@@ -111,6 +111,7 @@ router.get('/games_users/pending',(req,res) => {
     .innerJoin('users','users.id','users_game.users_id')
     .where("game.is_active","pending")
     .then((data)=>{
+      console.log("hey jerky", data);
       res.json(data)
     })
 })
@@ -155,6 +156,7 @@ router.get('/games/:id', function(req, res, next) {
 router.post('/games', function(req, res, next) {
     return knex('game').insert({
             creator: req.body.creator,
+            // creator_id: req.body.creator_id,
             type: req.body.type,
             p1_winner: null,
             time: new Date(),
