@@ -6,6 +6,7 @@ exports.seed = function(knex, Promise) {
       const games = [{
         id: 1,
         type: "H-O-R-S-E",
+        creator: "Matt",
         p1_winner: true,
         time: new Date(),
         p1_score: 5,
@@ -16,6 +17,7 @@ exports.seed = function(knex, Promise) {
       }, {
         id: 2,
         type: "Ping Pong",
+        creator: "Darren",
         p1_winner: false,
         time: new Date(),
         p1_score: 11,
@@ -26,6 +28,7 @@ exports.seed = function(knex, Promise) {
       }, {
         id: 3,
         type: "Pool",
+        creator: "Mark",
         p1_winner: false,
         time: new Date(),
         p1_score: 3,
@@ -36,6 +39,7 @@ exports.seed = function(knex, Promise) {
       }, {
         id: 4,
         type: "Darts",
+        creator: "Ike",
         p1_winner: false,
         time: new Date(),
         p1_score: 6,

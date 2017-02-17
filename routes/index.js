@@ -154,6 +154,7 @@ router.get('/games/:id', function(req, res, next) {
 
 router.post('/games', function(req, res, next) {
     return knex('game').insert({
+            creator: req.body.creator,
             type: req.body.type,
             p1_winner: null,
             time: new Date(),
@@ -268,6 +269,7 @@ router.post('/games/:games_id/user/:users_id', (req, res, next) => {
             game_id: req.params.games_id,
             users_id: req.params.users_id
         })
+        .returning('game_id')
         .then(data => {
             res.json(data);
         });

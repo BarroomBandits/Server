@@ -4,6 +4,8 @@ exports.up = function(knex, Promise) {
     table.increments();
     table.text('type').notNullable();
     table.boolean('p1_winner');
+    table.text('creator');
+    // table.integer('creator_id');
     table.dateTime('time').notNullable();
     table.integer('p1_score').notNullable();
     table.integer('p2_score').notNullable();
